@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "dungeonmew",
+	"version": "${version}",
+	"name": "DungeonMew",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"BasicallyIAmFox"
+	],
+	"contact": {
+	},
+	"license": "MIT",
+	"icon": "assets/dungeonmew/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dungeonmew.DungeonMew"
+		],
+		"client": [
+			"dungeonmew.DungeonMewClient"
+		],
+		"fabric-datagen": [
+			"dungeonmew.datagen.DungeonMewDataGenerator"
+		]
+	},
+	"mixins": [
+		"dungeonmew.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
