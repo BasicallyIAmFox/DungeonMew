@@ -36,7 +36,7 @@ public final class CooldownTracker {
         });
 
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if (!DungeonMewClient.isConnectedToDungeonDodge() || client.player == null)
+            if (client.player == null)
                 return;
 
             for (var ability : abilitiesInCooldown.entrySet()) {

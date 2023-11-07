@@ -32,7 +32,7 @@ public abstract class InGameHudMixin {
             cancellable = true
     )
     private void dungeonmew$setOverlayMessage(Text message, boolean tinted, CallbackInfo ci) {
-        if (!DungeonMewClient.isConnectedToDungeonDodge() || client.player == null)
+        if (client.player == null)
             return;
 
         String literalMessage = FormattingUtils.removeFormatting(message.getString());
@@ -82,13 +82,10 @@ public abstract class InGameHudMixin {
                                             @Share("dungeonmew$width") LocalIntRef widthRef,
                                             @Share("dungeonmew$height") LocalIntRef heightRef,
                                             @Share("dungeonmew$ctx") LocalRef<DrawContext> ctxRef) {
-        if (DungeonMewClient.isConnectedToDungeonDodge()) {
-            client.getProfiler().swap("dungeonmew$manaBar");
-            StatusBarRenderer.renderManaBar(ctxRef.get(), widthRef.get(), heightRef.get());
+        client.getProfiler().swap("dungeonmew$manaBar");
+        StatusBarRenderer.renderManaBar(ctxRef.get(), widthRef.get(), heightRef.get());
 
-            return Integer.MAX_VALUE;
-        }
-        return i;
+        return Integer.MAX_VALUE;
     }
 
     @Inject(
@@ -96,7 +93,7 @@ public abstract class InGameHudMixin {
             at = @At("TAIL")
     )
     private void dungeonmew$renderExpOrb(DrawContext context, int x, CallbackInfo ci) {
-        if (DungeonMewClient.isConnectedToDungeonDodge() && Features.DISPLAY_EXPERIENCE_ORB.getValue()) {
+        if (Features.DISPLAY_EXPERIENCE_ORB.getValue()) {
             client.getProfiler().push("dungeonmew$experienceOrb");
             StatusBarRenderer.renderExperienceOrb(context, scaledWidth, scaledHeight);
             client.getProfiler().pop();

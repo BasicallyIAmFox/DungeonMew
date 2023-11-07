@@ -20,7 +20,7 @@ public final class ArrowTracker {
 
     public static void init() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (!DungeonMewClient.isConnectedToDungeonDodge() || client.player == null)
+            if (client.player == null)
                 return;
 
             var player = client.player;
@@ -32,9 +32,6 @@ public final class ArrowTracker {
         });
 
         HudRenderCallback.EVENT.register((ctx, tickDelta) -> {
-            if (!DungeonMewClient.isConnectedToDungeonDodge())
-                return;
-
             MinecraftClient.getInstance().getProfiler().push("dungeonmew$arrowCounter");
 
             int scaledWidth = ctx.getScaledWindowWidth();

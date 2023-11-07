@@ -51,7 +51,7 @@ public abstract class SkullBlockEntityRendererMixin {
 
     @Unique
     private static boolean isValidSkull(SkullBlockEntity state) {
-        if (DungeonMewClient.isConnectedToDungeonDodge() && DungeonTracker.inDungeon() && Features.ESSENCE_FINDER.getValue().enabled()) {
+        if (DungeonTracker.inDungeon() && Features.ESSENCE_FINDER.getValue().enabled()) {
             return !BlessingFinderTracker.isMarked(state.getPos()) && tryMatchTexture(state, essenceId);
         }
         else return false;

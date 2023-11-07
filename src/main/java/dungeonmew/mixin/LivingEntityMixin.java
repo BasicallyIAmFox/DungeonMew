@@ -21,7 +21,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "getArmor", at = @At("RETURN"), cancellable = true)
     private void dungeonmew$getArmor(CallbackInfoReturnable<Integer> cir) {
-        if (DungeonMewClient.isConnectedToDungeonDodge() && !Features.DISPLAY_ARMOR_BAR.getValue()) {
+        if (!Features.DISPLAY_ARMOR_BAR.getValue()) {
             cir.setReturnValue(0);
         }
     }
@@ -31,7 +31,7 @@ public abstract class LivingEntityMixin extends Entity {
             at = @At("HEAD"),
             cancellable = true)
     private void dungeonmew$hasStatusEffect(StatusEffect effect, CallbackInfoReturnable<Boolean> cir) {
-        if (DungeonMewClient.isConnectedToDungeonDodge() && effect == StatusEffects.DARKNESS && Features.HIDE_DARKNESS.getValue()) {
+        if (effect == StatusEffects.DARKNESS && Features.HIDE_DARKNESS.getValue()) {
             cir.setReturnValue(false);
         }
     }

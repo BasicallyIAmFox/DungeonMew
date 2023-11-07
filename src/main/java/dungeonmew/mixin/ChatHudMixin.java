@@ -48,7 +48,7 @@ public abstract class ChatHudMixin {
                                                       boolean refresh,
                                                       CallbackInfo ci,
                                                       @Share("dungeonmew$text") LocalRef<Text> localRef) {
-        if (!DungeonMewClient.isConnectedToDungeonDodge() || client.player == null)
+        if (client.player == null)
             return;
 
         String literalMessage = FormattingUtils.removeFormatting(message.getString());

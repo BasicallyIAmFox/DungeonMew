@@ -23,7 +23,7 @@ public final class ExperienceTracker {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     private static final Pattern EXPERIENCE_LEVELS_REGEX = Pattern.compile("Your Level Experience: (\\d*\\.?\\d*)\\.");
-    private static final Pattern EXPERIENCE_OVERLAY_REGEX = Pattern.compile("\\(\\+(\\d*\\.?\\d*) exp\\)");
+    private static final Pattern EXPERIENCE_OVERLAY_REGEX = Pattern.compile("\\(\\+(\\d*\\.?\\d*) exp\\) \\(\\d*.?\\d*%\\)");
     private static final Pattern EXPERIENCE_STASH_REGEX = Pattern.compile("Treasure: You have found a Experience Stash! \\((\\d*.?\\d*)\\)");
 
     private static State state = State.NONE;
@@ -49,13 +49,18 @@ public final class ExperienceTracker {
     }
 
     public static void init() {
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+            levelOrdinal = -1;
+            state = State.NONE;
+        });
+
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             levelOrdinal = -1;
             state = State.NONE;
         });
 
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if (DungeonMewClient.isConnectedToDungeonDodge() && client.getNetworkHandler() != null && state == State.NONE) {
+            if (client.getNetworkHandler() != null && state == State.NONE) {
                 client.getNetworkHandler().sendCommand("exp");
                 state = State.WAIT;
             }

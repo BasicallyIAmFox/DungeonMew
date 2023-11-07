@@ -4,7 +4,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
-public enum Level {LEVEL_1(1, 0),
+public enum Level {
+    LEVEL_1(1, 0),
     LEVEL_2(2, 100),
     LEVEL_3(3, 200),
     LEVEL_4(4, 300),

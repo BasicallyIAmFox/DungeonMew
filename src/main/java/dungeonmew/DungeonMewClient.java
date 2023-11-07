@@ -26,16 +26,9 @@ import java.util.Objects;
 public class DungeonMewClient implements ClientModInitializer {
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    private static boolean isConnectedToDungeonDodge = false;
-
-    public static boolean isConnectedToDungeonDodge() {
-        return isConnectedToDungeonDodge;
-    }
-
     @Override
     public void onInitializeClient() {
         initFeatures();
-        registerConnectionEvents();
 
         registerHotkeys();
         registerShortcuts();
@@ -63,18 +56,6 @@ public class DungeonMewClient implements ClientModInitializer {
 
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
             FeatureIO.save();
-        });
-    }
-
-    private static void registerConnectionEvents() {
-        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            if (client.getCurrentServerEntry() != null && !client.getCurrentServerEntry().isLocal()) {
-                isConnectedToDungeonDodge = Objects.equals(client.getCurrentServerEntry().address, Constants.DUNGEON_DODGE_IP);
-            }
-        });
-
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
-            isConnectedToDungeonDodge = false;
         });
     }
 

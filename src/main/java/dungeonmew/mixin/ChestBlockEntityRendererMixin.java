@@ -27,7 +27,7 @@ public abstract class ChestBlockEntityRendererMixin<T extends BlockEntity> imple
 
     @Unique
     private static <T extends BlockEntity> boolean isValidChest(T entity) {
-        if (DungeonMewClient.isConnectedToDungeonDodge() && DungeonTracker.inDungeon() && Features.BLESSING_FINDER.getValue().enabled()) {
+        if (DungeonTracker.inDungeon() && Features.BLESSING_FINDER.getValue().enabled()) {
             return entity.getCachedState().isOf(Blocks.CHEST) && !BlessingFinderTracker.isMarked(entity.getPos());
         }
         else return false;

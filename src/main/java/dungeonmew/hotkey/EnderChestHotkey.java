@@ -22,7 +22,7 @@ public final class EnderChestHotkey {
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (DungeonMewClient.isConnectedToDungeonDodge() && keyBinding.wasPressed()) {
+            if (keyBinding.wasPressed()) {
                 assert client.player != null;
                 client.player.networkHandler.sendCommand("ec");
             }
