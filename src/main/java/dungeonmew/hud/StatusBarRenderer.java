@@ -1,5 +1,6 @@
 package dungeonmew.hud;
 
+import ddapi.player.Level;
 import ddapi.player.Stats;
 import dungeonmew.Constants;
 import ddapi.player.ExperienceTracker;
@@ -43,7 +44,12 @@ public final class StatusBarRenderer {
             float current = ExperienceTracker.getExperience() - ExperienceTracker.getCurrentLevel().getTotalExperience();
             float required = ExperienceTracker.getNextLevel().getTotalExperience() - ExperienceTracker.getCurrentLevel().getTotalExperience();
 
-            offset = current / required;
+            if (ExperienceTracker.getNextLevel() == Level.COUNT) {
+                offset = 1;
+            }
+            else {
+                offset = current / required;
+            }
         } else {
             offset = 1f;
         }

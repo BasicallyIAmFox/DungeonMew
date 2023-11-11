@@ -19,7 +19,9 @@
   "dungeonmew.feature.essence_finder.enabled": "Essence Finder is §aenabled! §cThis may or may not get you banned!",
   "dungeonmew.feature.essence_finder_color.set": "Essence Finder color is set to %s!",
   "dungeonmew.feature.essence_finder_color.this": "this color",
-  "dungeonmew.feature.hide_darkness.disabled": "Darkness effect is §chidden!",
-  "dungeonmew.feature.hide_darkness.enabled": "Darkness effect is §ashown!",
+  "dungeonmew.feature.hide_darkness.disabled": "Darkness and blindness effects are §chidden!",
+  "dungeonmew.feature.hide_darkness.enabled": "Darkness and blindness effects are §ashown!",
+  "dungeonmew.feature.show_custom_model_data.disabled": "Items don't show their CustomModelData anymore!",
+  "dungeonmew.feature.show_custom_model_data.enabled": "Items now show their CustomModelData!",
   "key.dungeonmew.ender_chest": "Ender Chest Shortcut"
 }

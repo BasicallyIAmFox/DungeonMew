@@ -12,6 +12,7 @@
     "ChatHudMixin",
     "ChestBlockEntityRendererMixin",
     "InGameHudMixin",
+    "ItemStackMixin",
     "LightmapTextureManagerMixin",
     "LivingEntityMixin",
     "SkullBlockEntityRendererMixin"

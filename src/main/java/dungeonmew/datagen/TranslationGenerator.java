@@ -48,7 +48,10 @@ public class TranslationGenerator extends FabricLanguageProvider {
         translationBuilder.add("dungeonmew.feature.essence_finder_color.set", "Essence Finder color is set to %s!");
         translationBuilder.add("dungeonmew.feature.essence_finder_color.this", "this color");
 
-        translationBuilder.add("dungeonmew.feature.hide_darkness.enabled", "Darkness effect is §ashown!");
-        translationBuilder.add("dungeonmew.feature.hide_darkness.disabled", "Darkness effect is §chidden!");
+        translationBuilder.add("dungeonmew.feature.hide_darkness.enabled", "Darkness and blindness effects are §ashown!");
+        translationBuilder.add("dungeonmew.feature.hide_darkness.disabled", "Darkness and blindness effects are §chidden!");
+
+        translationBuilder.add("dungeonmew.feature.show_custom_model_data.enabled", "Items now show their CustomModelData!");
+        translationBuilder.add("dungeonmew.feature.show_custom_model_data.disabled", "Items don't show their CustomModelData anymore!");
     }
 }

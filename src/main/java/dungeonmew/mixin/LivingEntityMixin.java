@@ -1,6 +1,5 @@
 package dungeonmew.mixin;
 
-import dungeonmew.DungeonMewClient;
 import dungeonmew.feature.Features;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -31,7 +30,7 @@ public abstract class LivingEntityMixin extends Entity {
             at = @At("HEAD"),
             cancellable = true)
     private void dungeonmew$hasStatusEffect(StatusEffect effect, CallbackInfoReturnable<Boolean> cir) {
-        if (effect == StatusEffects.DARKNESS && Features.HIDE_DARKNESS.getValue()) {
+        if ((effect == StatusEffects.DARKNESS || effect == StatusEffects.BLINDNESS) && Features.HIDE_DARKNESS.getValue()) {
             cir.setReturnValue(false);
         }
     }

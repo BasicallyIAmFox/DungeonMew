@@ -1,4 +1,3 @@
-/*
 package dungeonmew.feature;
 
 import com.mojang.brigadier.Command;
@@ -15,13 +14,13 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.arg
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
 
 @Environment(EnvType.CLIENT)
-public final class DisplayLuckPercentageCommand {
-    // usage: displayLuckPercentage (get|set (true|false))
+public final class ShowCMDCommand {
+    // usage: showCustomModelData (get|set (true|false))
     public static void register(String name, LiteralCommandNode<FabricClientCommandSource> rootNode) {
-        var displayLuckPercentageNode = literal(name).build();
+        var displayArmorBarNode = literal(name).build();
 
         var getNode = literal("get")
-                .executes(DisplayLuckPercentageCommand::getState)
+                .executes(ShowCMDCommand::getState)
                 .build();
 
         var setNode = literal("set").build();
@@ -31,20 +30,20 @@ public final class DisplayLuckPercentageCommand {
 
         setNode.addChild(valueNode);
 
-        displayLuckPercentageNode.addChild(getNode);
-        displayLuckPercentageNode.addChild(setNode);
+        displayArmorBarNode.addChild(getNode);
+        displayArmorBarNode.addChild(setNode);
 
-        rootNode.addChild(displayLuckPercentageNode);
+        rootNode.addChild(displayArmorBarNode);
     }
 
     private static int getState(CommandContext<FabricClientCommandSource> ctx) {
-        sendStateMessage(ctx.getSource(), Features.DISPLAY_LUCK_PERCENTAGE.getValue());
+        sendStateMessage(ctx.getSource(), Features.SHOW_CUSTOM_MODEL_DATA.getValue());
 
         return Command.SINGLE_SUCCESS;
     }
 
     private static int setState(CommandContext<FabricClientCommandSource> ctx, boolean value) {
-        Features.DISPLAY_LUCK_PERCENTAGE.bind(value);
+        Features.SHOW_CUSTOM_MODEL_DATA.bind(value);
         sendStateMessage(ctx.getSource(), value);
 
         return Command.SINGLE_SUCCESS;
@@ -52,9 +51,8 @@ public final class DisplayLuckPercentageCommand {
 
     private static void sendStateMessage(FabricClientCommandSource source, boolean value) {
         if (value)
-            source.sendFeedback(systemText(Text.translatable("dungeonmew.feature.display_luck_percentage.enabled")));
+            source.sendFeedback(systemText(Text.translatable("dungeonmew.feature.show_custom_model_data.enabled")));
         else
-            source.sendFeedback(systemText(Text.translatable("dungeonmew.feature.display_luck_percentage.disabled")));
+            source.sendFeedback(systemText(Text.translatable("dungeonmew.feature.show_custom_model_data.disabled")));
     }
 }
-*/

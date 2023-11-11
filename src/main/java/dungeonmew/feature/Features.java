@@ -111,40 +111,6 @@ public final class Features {
         }
     };
 
-    // Disabled until I figure out how to properly modify drop messages
-    /*
-    public static final Feature<Boolean> DISPLAY_LUCK_PERCENTAGE = new Feature<>(
-            "display_luck_percentage",
-            "displayLuckPercentage",
-            new BoolBinding(true)
-    ) {
-        private static final Logger LOGGER = LogUtils.getLogger();
-        private static final Pattern PATTERN = Pattern.compile("LUCKY DROP! \\[(?<ItemName>.*)] \\((?<Percent>\\d*.?\\d*)%\\) \\(\\+(?<LuckValue>\\d*.?\\d*)(?<CloverSymbol>.)\\)");
-
-        @Override
-        public void init() {
-            SentMessageEvents.CHAT_MODIFY.register((client, message) -> {
-                String messageValue = FormattingUtils.removeFormatting(message.getString());
-                Matcher messageMatcher = PATTERN.matcher(messageValue);
-
-                if (messageMatcher.find() && message instanceof MutableText mutableText) {
-                    float percent = Float.parseFloat(messageMatcher.group("Percent")) / 100f;
-                    float luckValue = Float.parseFloat(messageMatcher.group("LuckValue")) / 100f;
-                    luckValue = percent * (1 + luckValue);
-                    luckValue = Math.round(luckValue * 100f) / 100f;
-                }
-
-                return null;
-            });
-        }
-
-        @Override
-        public void registerAsCommand(LiteralCommandNode<FabricClientCommandSource> rootNode) {
-            DisplayLuckPercentageCommand.register(getName(), rootNode);
-        }
-    };
-    */
-
     public static final Feature<Boolean> HIDE_DARKNESS = new Feature<>(
             "hide_darkness",
             "hideDarkness",
@@ -153,6 +119,17 @@ public final class Features {
         @Override
         public void registerAsCommand(LiteralCommandNode<FabricClientCommandSource> rootNode) {
             HideDarknessCommand.register(getName(), rootNode);
+        }
+    };
+
+    public static final Feature<Boolean> SHOW_CUSTOM_MODEL_DATA = new Feature<>(
+            "show_custom_model_data",
+            "showCustomModelData",
+            new BoolBinding(false)
+    ) {
+        @Override
+        public void registerAsCommand(LiteralCommandNode<FabricClientCommandSource> rootNode) {
+            ShowCMDCommand.register(getName(), rootNode);
         }
     };
 
