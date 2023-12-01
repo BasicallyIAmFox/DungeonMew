@@ -5,11 +5,22 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.mixin.item.client.ClientPlayerInteractionManagerMixin;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.command.ScheduleCommand;
+import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 import static dungeonmew.DungeonMewClient.LOGGER;
@@ -18,22 +29,12 @@ import static dungeonmew.DungeonMewClient.LOGGER;
 @Environment(EnvType.CLIENT)
 public class SpeedSwordHotkey {
     private static KeyBinding keyBinding;
-
-    static class switchBack extends Thread{
-        static int savedHandSlot;
-
-        public void run() {
-            try {
-                Thread.sleep(50); // idk how im supposed to do client side scheduling wth
-
-            }
-            catch (Exception e) {
-                LOGGER.error("Error occured trying to delay in thread (" + Thread.currentThread() + ")");
-            }
-        }
-    }
+    static int savedSwordSlot;
+    static int savedHandSlot;
 
     public static void init() {
+        savedSwordSlot = -2;
+        savedHandSlot = -1;
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.dungeonmew.speed_sword",
                 InputUtil.Type.KEYSYM,
@@ -44,11 +45,36 @@ public class SpeedSwordHotkey {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (keyBinding.wasPressed()) {
                 assert client.player != null;
+                PlayerInventory inv = client.player.getInventory();
 
-                // we switch back after we done
-                switchBack.savedHandSlot = client.player.getInventory().selectedSlot;
-                client.player.getInventory().getSlotWithStack(new ItemStack()))
+                if (inv.selectedSlot == savedSwordSlot){// switch back
+                    int diff = savedSwordSlot - savedHandSlot;
 
+                    for(int j = 0; j <  Math.abs(diff); j++) {
+                        inv.scrollInHotbar((diff) / Math.abs(diff));
+                    }
+                }
+                else {
+                    for (int i = 0; i < 9; i++) {
+                        ItemStack item = inv.getStack(i);
+                        if (item.getItem().asItem().equals(Items.DIAMOND_SWORD)){
+//                                &&
+//                                ( item.getItem().getName().toString().equals("Enchanted Sword") ||
+//                                        item.getItem().getName().toString().equals("Magical Sword") )) { // check if hotbar has item
+                            savedSwordSlot = i;
+                            client.player.sendMessage(Text.literal(item.getName().getString()));
+                            if (savedHandSlot == -1) {
+                                savedHandSlot = inv.selectedSlot;
+                            }
+                            int diff = savedHandSlot - savedSwordSlot;
+                            for(int j = 0; j <  Math.abs(diff); j++) {
+                                inv.scrollInHotbar((diff) / Math.abs(diff));
+                            }
+                            break;
+                        }
+
+                    }
+                }
             }
         });
     }

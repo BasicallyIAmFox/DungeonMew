@@ -5,6 +5,7 @@ import ddapi.player.ClassTracker;
 import ddapi.player.DungeonTracker;
 import ddapi.player.ExperienceTracker;
 import ddapi.player.Stats;
+import dungeonmew.hotkey.SpeedSwordHotkey;
 import dungeonmew.tracker.*;
 import dungeonmew.feature.Feature;
 import dungeonmew.feature.Features;
@@ -69,6 +70,7 @@ public class DungeonMewClient implements ClientModInitializer {
 
     private static void registerHotkeys() {
         EnderChestHotkey.init();
+        SpeedSwordHotkey.init();
     }
 
     private static void registerShortcuts() {
