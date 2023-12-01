@@ -24,5 +24,6 @@
   "dungeonmew.feature.show_custom_model_data.disabled": "Items don't show their CustomModelData anymore!",
   "dungeonmew.feature.show_custom_model_data.enabled": "Items now show their CustomModelData!",
   "key.dungeonmew.ender_chest": "Ender Chest Shortcut",
-  "key.dungeonmew.speed_sword": "Use Speed Sword from Hotbar"
+  "key.dungeonmew.speed_sword": "Quick Speed",
+  "key.dungeonmew.quick_heal": "Quick Heal"
 }

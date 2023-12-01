@@ -1,6 +1,5 @@
 package dungeonmew.hotkey;
 
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -13,9 +12,9 @@ import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
-// switch to heal wand on key press and then switch back to previous hand slot
+// switch to speed sword on key press and then switch back to previous hand slot
 @Environment(EnvType.CLIENT)
-public class SpeedSwordHotkey {
+public class QuickHealHotkey {
     private static KeyBinding keyBinding;
     private static int savedSwordSlot;
     private static int savedHandSlot;
@@ -24,9 +23,9 @@ public class SpeedSwordHotkey {
         savedSwordSlot = -2;
         savedHandSlot = -1;
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.dungeonmew.speed_sword",
+                "key.dungeonmew.quick_heal",
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_R,
+                GLFW.GLFW_KEY_V,
                 "category.dungeonmew"
         ));
 
@@ -45,9 +44,8 @@ public class SpeedSwordHotkey {
                 else {
                     for (int i = 0; i < 9; i++) {
                         ItemStack item = inv.getStack(i);
-                        if (item.getItem().asItem().equals(Items.DIAMOND_SWORD) &&
-                                ( item.getName().getString().equals("Enchanted Sword") ||
-                                        item.getName().getString().equals("Magical Sword") )) { // check if hotbar has item
+                        if (item.getItem().asItem().equals(Items.BLAZE_ROD) &&
+                                ( item.getName().getString().equals("Healing Wand") )){
                             savedSwordSlot = i;
                             savedHandSlot = inv.selectedSlot;
                             int diff = inv.selectedSlot - savedSwordSlot;
