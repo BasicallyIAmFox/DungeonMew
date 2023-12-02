@@ -40,7 +40,7 @@ public class SpeedSwordHotkey {
                     int diff = inv.selectedSlot - savedHandSlot;
 
                     for(int j = 0; j <  Math.abs(diff); j++) {
-                        inv.scrollInHotbar((diff) / Math.abs(diff));
+                        inv.scrollInHotbar((diff));
                     }
                 }
                 else {
@@ -51,7 +51,7 @@ public class SpeedSwordHotkey {
                             savedHandSlot = inv.selectedSlot;
                             int diff = inv.selectedSlot - savedSwordSlot;
                             for(int j = 0; j <  Math.abs(diff); j++) {
-                                inv.scrollInHotbar((diff) / Math.abs(diff));
+                                inv.scrollInHotbar((diff));
                             }
                             break;
                         }
