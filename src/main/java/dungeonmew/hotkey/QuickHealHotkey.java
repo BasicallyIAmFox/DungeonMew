@@ -1,5 +1,6 @@
 package dungeonmew.hotkey;
 
+import ddapi.item.ItemFacts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -44,8 +45,7 @@ public class QuickHealHotkey {
                 else {
                     for (int i = 0; i < 9; i++) {
                         ItemStack item = inv.getStack(i);
-                        if (item.getItem().asItem().equals(Items.BLAZE_ROD) &&
-                                ( item.getName().getString().equals("Healing Wand") )){
+                        if (item.isOf(Items.BLAZE_ROD) && (ItemFacts.getBaseHealAmount(item) > 0)){
                             savedSwordSlot = i;
                             savedHandSlot = inv.selectedSlot;
                             int diff = inv.selectedSlot - savedSwordSlot;

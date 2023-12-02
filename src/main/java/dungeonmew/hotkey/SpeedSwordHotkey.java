@@ -1,6 +1,7 @@
 package dungeonmew.hotkey;
 
 
+import ddapi.item.ItemFacts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -45,9 +46,7 @@ public class SpeedSwordHotkey {
                 else {
                     for (int i = 0; i < 9; i++) {
                         ItemStack item = inv.getStack(i);
-                        if (item.getItem().asItem().equals(Items.DIAMOND_SWORD) &&
-                                ( item.getName().getString().equals("Enchanted Sword") ||
-                                        item.getName().getString().equals("Magical Sword") )) { // check if hotbar has item
+                        if (item.isOf(Items.DIAMOND_SWORD) && (ItemFacts.getBaseAbilitySpeedAmount(ItemFacts.getCustomModelData(item)) > 0)){
                             savedSwordSlot = i;
                             savedHandSlot = inv.selectedSlot;
                             int diff = inv.selectedSlot - savedSwordSlot;
