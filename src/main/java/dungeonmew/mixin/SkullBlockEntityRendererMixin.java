@@ -2,6 +2,7 @@ package dungeonmew.mixin;
 
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
+import com.mojang.authlib.properties.Property;
 import dungeonmew.DungeonMewClient;
 import dungeonmew.feature.BlessingFinderTracker;
 import dungeonmew.feature.Features;
@@ -44,7 +45,8 @@ public abstract class SkullBlockEntityRendererMixin {
             }
 
             var find = owner.getProperties().get("textures").stream().findFirst();
-            return find.isPresent() && Objects.equals(find.get().getValue(), texture);
+            Property property = find.get(); // Assuming find.get() returns a Property
+            return find.isPresent() && Objects.equals(property.value(), texture);
         }
         return false;
     }
