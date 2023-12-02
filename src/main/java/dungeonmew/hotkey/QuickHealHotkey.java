@@ -45,7 +45,7 @@ public class QuickHealHotkey {
                 else {
                     for (int i = 0; i < 9; i++) {
                         ItemStack item = inv.getStack(i);
-                        if (item.isOf(Items.BLAZE_ROD) && (ItemFacts.getBaseHealAmount(item) > 0)){
+                        if ((item.isOf(Items.BLAZE_ROD) || item.isOf(Items.STICK)) && (ItemFacts.getBaseHealAmount(item) > 0)){
                             savedSwordSlot = i;
                             savedHandSlot = inv.selectedSlot;
                             int diff = inv.selectedSlot - savedSwordSlot;
