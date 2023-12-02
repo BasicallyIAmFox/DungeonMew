@@ -45,7 +45,7 @@ public abstract class SkullBlockEntityRendererMixin {
             }
 
             var find = owner.getProperties().get("textures").stream().findFirst();
-            Property property = find.get(); // Assuming find.get() returns a Property
+            Property property = find.get();
             return find.isPresent() && Objects.equals(property.value(), texture);
         }
         return false;
