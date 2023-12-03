@@ -38,9 +38,9 @@ public class SpeedSwordHotkey {
 
                 if (inv.selectedSlot == savedSwordSlot){// switch back to previous slot before hotkey was pressed
                     int diff = inv.selectedSlot - savedHandSlot;
-
-                    for(int j = 0; j <  Math.abs(diff); j++) {
-                        inv.scrollInHotbar((diff));
+                    int dist = Math.abs(diff);
+                    for(int j = 0; j <  dist; j++) {
+                        inv.scrollInHotbar(diff);
                     }
                 }
                 else {
@@ -50,8 +50,9 @@ public class SpeedSwordHotkey {
                             savedSwordSlot = i;
                             savedHandSlot = inv.selectedSlot;
                             int diff = inv.selectedSlot - savedSwordSlot;
-                            for(int j = 0; j <  Math.abs(diff); j++) {
-                                inv.scrollInHotbar((diff));
+                            int dist = Math.abs(diff);
+                            for(int j = 0; j <  dist; j++) {
+                                inv.scrollInHotbar(diff);
                             }
                             break;
                         }
