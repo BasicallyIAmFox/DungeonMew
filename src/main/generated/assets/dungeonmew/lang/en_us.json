@@ -25,5 +25,7 @@
   "dungeonmew.feature.show_custom_model_data.enabled": "Items now show their CustomModelData!",
   "key.dungeonmew.ender_chest": "Ender Chest Shortcut",
   "key.dungeonmew.speed_sword": "Quick Speed",
-  "key.dungeonmew.quick_heal": "Quick Heal"
+  "key.dungeonmew.quick_heal": "Quick Heal",
+  "key.dungeonmew.trash": "Trash Shortcut",
+  "key.dungeonmew.debug": "debug"
 }

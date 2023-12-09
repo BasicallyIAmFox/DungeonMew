@@ -36,28 +36,36 @@ public class QuickHealHotkey {
                 PlayerInventory inv = client.player.getInventory();
 
                 if (inv.selectedSlot == savedSwordSlot){// switch back to previous slot before hotkey was pressed
-                    int diff = inv.selectedSlot - savedHandSlot;
-
-                    for(int j = 0; j <  Math.abs(diff); j++) {
-                        inv.scrollInHotbar(diff);
-                    }
+                    scrollToSlot(inv, savedHandSlot);
                 }
                 else {
+                    int largestMaxHeal = 0;
+                    int invslot = inv.selectedSlot;
                     for (int i = 0; i < 9; i++) {
                         ItemStack item = inv.getStack(i);
-                        if ((item.isOf(Items.BLAZE_ROD) || item.isOf(Items.STICK)) && (ItemFacts.getBaseHealAmount(item) > 0)){
-                            savedSwordSlot = i;
-                            savedHandSlot = inv.selectedSlot;
-                            int diff = inv.selectedSlot - savedSwordSlot;
-                            for(int j = 0; j <  Math.abs(diff); j++) {
-                                inv.scrollInHotbar(diff);
-                            }
-                            break;
+                        int healAmount = ItemFacts.getBaseHealAmount(item);
+                        if (healAmount > largestMaxHeal){
+                            invslot = i;
+                            largestMaxHeal = healAmount;
                         }
 
                     }
+                    savedHandSlot = inv.selectedSlot;
+                    savedSwordSlot = invslot;
+                    scrollToSlot(inv, savedSwordSlot);
                 }
             }
         });
+    }
+
+
+    public static void scrollToSlot(PlayerInventory inv, int slot){
+
+        int diff = inv.selectedSlot - slot;
+        System.out.println(diff);
+        int dist = Math.abs(diff);
+        for(int j = 0; j <  dist; j++) {
+            inv.scrollInHotbar(diff);
+        }
     }
 }

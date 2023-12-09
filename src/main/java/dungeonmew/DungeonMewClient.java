@@ -5,12 +5,10 @@ import ddapi.player.ClassTracker;
 import ddapi.player.DungeonTracker;
 import ddapi.player.ExperienceTracker;
 import ddapi.player.Stats;
-import dungeonmew.hotkey.QuickHealHotkey;
-import dungeonmew.hotkey.SpeedSwordHotkey;
+import dungeonmew.hotkey.*;
 import dungeonmew.tracker.*;
 import dungeonmew.feature.Feature;
 import dungeonmew.feature.Features;
-import dungeonmew.hotkey.EnderChestHotkey;
 import dungeonmew.io.FeatureIO;
 import dungeonmew.shortcut.WarpSpawnShortcut;
 import net.fabricmc.api.ClientModInitializer;
@@ -73,6 +71,8 @@ public class DungeonMewClient implements ClientModInitializer {
         EnderChestHotkey.init();
         SpeedSwordHotkey.init();
         QuickHealHotkey.init();
+        TrashHotkey.init();
+        DebugHotkey.init();
     }
 
     private static void registerShortcuts() {
