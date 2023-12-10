@@ -72,7 +72,6 @@ public class DungeonMewClient implements ClientModInitializer {
         SpeedSwordHotkey.init();
         QuickHealHotkey.init();
         TrashHotkey.init();
-        DebugHotkey.init();
     }
 
     private static void registerShortcuts() {

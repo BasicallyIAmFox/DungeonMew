@@ -23,7 +23,6 @@ public class TranslationGenerator extends FabricLanguageProvider {
         translationBuilder.add("key.dungeonmew.speed_sword", "Quick Speed");
         translationBuilder.add("key.dungeonmew.quick_heal", "Quick Heal");
         translationBuilder.add("key.dungeonmew.trash", "Trash Shortcut");
-        translationBuilder.add("key.dungeonmew.debug", "Debug Shortcut");
     }
 
     private void generateFeatures(TranslationBuilder translationBuilder) {
