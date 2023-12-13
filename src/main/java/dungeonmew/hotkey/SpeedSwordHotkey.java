@@ -10,11 +10,9 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
-// switch to heal wand on key press and then switch back to previous hand slot
+// switch to speed sword on key press and then switch back to previous hand slot
 @Environment(EnvType.CLIENT)
 public class SpeedSwordHotkey {
     private static KeyBinding keyBinding;
@@ -37,29 +35,34 @@ public class SpeedSwordHotkey {
                 PlayerInventory inv = client.player.getInventory();
 
                 if (inv.selectedSlot == savedSwordSlot){// switch back to previous slot before hotkey was pressed
-                    int diff = inv.selectedSlot - savedHandSlot;
-                    int dist = Math.abs(diff);
-                    for(int j = 0; j <  dist; j++) {
-                        inv.scrollInHotbar(diff);
-                    }
+                    scrollToSlot(inv, savedHandSlot);
                 }
                 else {
+                    int largestSpeedBoost = 0;
+                    int invslot = inv.selectedSlot;
                     for (int i = 0; i < 9; i++) {
                         ItemStack item = inv.getStack(i);
-                        if (item.isOf(Items.DIAMOND_SWORD) && (ItemFacts.getBaseAbilitySpeedAmount(ItemFacts.getCustomModelData(item)) > 0)){
-                            savedSwordSlot = i;
-                            savedHandSlot = inv.selectedSlot;
-                            int diff = inv.selectedSlot - savedSwordSlot;
-                            int dist = Math.abs(diff);
-                            for(int j = 0; j <  dist; j++) {
-                                inv.scrollInHotbar(diff);
-                            }
-                            break;
+                        int healAmount = ItemFacts.getBaseHealAmount(item);
+                        if (healAmount > largestSpeedBoost){
+                            invslot = i;
+                            largestSpeedBoost = healAmount;
                         }
 
                     }
+                    savedHandSlot = inv.selectedSlot;
+                    savedSwordSlot = invslot;
+                    scrollToSlot(inv, savedSwordSlot);
                 }
             }
         });
+    }
+    public static void scrollToSlot(PlayerInventory inv, int slot){
+
+        int diff = inv.selectedSlot - slot;
+        System.out.println(diff);
+        int dist = Math.abs(diff);
+        for(int j = 0; j <  dist; j++) {
+            inv.scrollInHotbar(diff);
+        }
     }
 }
