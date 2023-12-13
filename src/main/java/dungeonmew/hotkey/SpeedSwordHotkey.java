@@ -52,7 +52,7 @@ public class SpeedSwordHotkey {
                     }
 
                     savedHandSlot = inv.selectedSlot;
-                    savedSwordSlot = invslot;
+                    savedSwordSlot = invSlot;
 
                     scrollToSlot(inv, savedSwordSlot);
                 }
