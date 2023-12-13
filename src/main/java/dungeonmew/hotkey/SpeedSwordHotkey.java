@@ -56,7 +56,7 @@ public class SpeedSwordHotkey {
             }
         });
     }
-    public static void scrollToSlot(PlayerInventory inv, int slot){
+    private static void scrollToSlot(PlayerInventory inv, int slot){
 
         int diff = inv.selectedSlot - slot;
         System.out.println(diff);

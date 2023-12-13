@@ -6,6 +6,7 @@ import ddapi.player.DungeonTracker;
 import ddapi.player.ExperienceTracker;
 import ddapi.player.Stats;
 import dungeonmew.hotkey.*;
+import dungeonmew.feature.DebugCommand;
 import dungeonmew.tracker.*;
 import dungeonmew.feature.Feature;
 import dungeonmew.feature.Features;
@@ -20,8 +21,6 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import org.slf4j.Logger;
-
-import java.util.Objects;
 
 public class DungeonMewClient implements ClientModInitializer {
     public static final Logger LOGGER = LogUtils.getLogger();
@@ -72,10 +71,12 @@ public class DungeonMewClient implements ClientModInitializer {
         SpeedSwordHotkey.init();
         QuickHealHotkey.init();
         TrashHotkey.init();
+        AutoTrashHotkey.init();
     }
 
     private static void registerShortcuts() {
         WarpSpawnShortcut.init();
+        DebugCommand.init();
     }
 
     private static final int BRACKETS_COLOR = 0x2F_4F_4F;

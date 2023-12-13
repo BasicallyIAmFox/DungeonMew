@@ -8,6 +8,10 @@ import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
+/**
+ * Bindings for config
+ * @param <T>
+ */
 @Environment(EnvType.CLIENT)
 public abstract class Binding<T> {
     protected static final Logger LOGGER = LogUtils.getLogger();
