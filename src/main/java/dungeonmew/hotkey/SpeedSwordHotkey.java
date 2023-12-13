@@ -22,6 +22,7 @@ public class SpeedSwordHotkey {
     public static void init() {
         savedSwordSlot = -2;
         savedHandSlot = -1;
+
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.dungeonmew.speed_sword",
                 InputUtil.Type.KEYSYM,
@@ -39,29 +40,30 @@ public class SpeedSwordHotkey {
                 }
                 else {
                     int largestSpeedBoost = 0;
-                    int invslot = inv.selectedSlot;
+                    int invSlot = inv.selectedSlot;
+
                     for (int i = 0; i < 9; i++) {
-                        ItemStack item = inv.getStack(i);
-                        int healAmount = ItemFacts.getBaseAbilitySpeedAmount(ItemFacts.getCustomModelData(item));
-                        if (healAmount > largestSpeedBoost){
-                            invslot = i;
+                        var item = inv.getStack(i);
+                        int healAmount = ItemFacts.getBaseAbilitySpeedAmount(item);
+                        if (healAmount > largestSpeedBoost) {
+                            invSlot = i;
                             largestSpeedBoost = healAmount;
                         }
-
                     }
+
                     savedHandSlot = inv.selectedSlot;
                     savedSwordSlot = invslot;
+
                     scrollToSlot(inv, savedSwordSlot);
                 }
             }
         });
     }
-    public static void scrollToSlot(PlayerInventory inv, int slot){
 
+    public static void scrollToSlot(PlayerInventory inv, int slot) {
         int diff = inv.selectedSlot - slot;
-        System.out.println(diff);
         int dist = Math.abs(diff);
-        for(int j = 0; j <  dist; j++) {
+        for(int j = 0; j < dist; j++) {
             inv.scrollInHotbar(diff);
         }
     }

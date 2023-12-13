@@ -23,6 +23,7 @@ public class QuickHealHotkey {
     public static void init() {
         savedSwordSlot = -2;
         savedHandSlot = -1;
+
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.dungeonmew.quick_heal",
                 InputUtil.Type.KEYSYM,
@@ -35,36 +36,35 @@ public class QuickHealHotkey {
                 assert client.player != null;
                 PlayerInventory inv = client.player.getInventory();
 
-                if (inv.selectedSlot == savedSwordSlot){// switch back to previous slot before hotkey was pressed
+                if (inv.selectedSlot == savedSwordSlot) { // switch back to previous slot before hotkey was pressed
                     scrollToSlot(inv, savedHandSlot);
                 }
                 else {
                     int largestMaxHeal = 0;
-                    int invslot = inv.selectedSlot;
+                    int invSlot = inv.selectedSlot;
+
                     for (int i = 0; i < 9; i++) {
-                        ItemStack item = inv.getStack(i);
+                        var item = inv.getStack(i);
                         int healAmount = ItemFacts.getBaseHealAmount(item);
-                        if (healAmount > largestMaxHeal){
-                            invslot = i;
+                        if (healAmount > largestMaxHeal) {
+                            invSlot = i;
                             largestMaxHeal = healAmount;
                         }
-
                     }
+
                     savedHandSlot = inv.selectedSlot;
-                    savedSwordSlot = invslot;
+                    savedSwordSlot = invSlot;
+
                     scrollToSlot(inv, savedSwordSlot);
                 }
             }
         });
     }
 
-
-    public static void scrollToSlot(PlayerInventory inv, int slot){
-
+    public static void scrollToSlot(PlayerInventory inv, int slot) {
         int diff = inv.selectedSlot - slot;
-        System.out.println(diff);
         int dist = Math.abs(diff);
-        for(int j = 0; j <  dist; j++) {
+        for(int j = 0; j < dist; j++) {
             inv.scrollInHotbar(diff);
         }
     }
