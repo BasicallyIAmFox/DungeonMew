@@ -5,8 +5,6 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "mixins": [
-  ],
   "client": [
     "BlockEventS2CPacketMixin",
     "ChatHudMixin",

@@ -61,6 +61,10 @@ public final class ItemFacts {
         };
     }
 
+    public static int getBaseAbilitySpeedAmount(ItemStack itemStack) {
+        return getBaseAbilitySpeedAmount(getCustomModelData(itemStack));
+    }
+
     public static int getBaseAbilitySpeedAmount(int customModelData) {
         return switch (customModelData) {
             // Enchanted Sword

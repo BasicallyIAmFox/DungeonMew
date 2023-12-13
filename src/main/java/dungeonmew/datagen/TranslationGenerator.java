@@ -20,6 +20,9 @@ public class TranslationGenerator extends FabricLanguageProvider {
     private void generateKeyBinds(TranslationBuilder translationBuilder) {
         translationBuilder.add("category.dungeonmew", "DungeonMew");
         translationBuilder.add("key.dungeonmew.ender_chest", "Ender Chest Shortcut");
+        translationBuilder.add("key.dungeonmew.speed_sword", "Quick Speed");
+        translationBuilder.add("key.dungeonmew.quick_heal", "Quick Heal");
+        translationBuilder.add("key.dungeonmew.trash", "Trash Shortcut");
     }
 
     private void generateFeatures(TranslationBuilder translationBuilder) {
