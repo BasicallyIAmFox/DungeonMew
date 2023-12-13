@@ -42,7 +42,7 @@ public class SpeedSwordHotkey {
                     int invslot = inv.selectedSlot;
                     for (int i = 0; i < 9; i++) {
                         ItemStack item = inv.getStack(i);
-                        int healAmount = ItemFacts.getBaseHealAmount(item);
+                        int healAmount = ItemFacts.getBaseAbilitySpeedAmount(ItemFacts.getCustomModelData(item));
                         if (healAmount > largestSpeedBoost){
                             invslot = i;
                             largestSpeedBoost = healAmount;
