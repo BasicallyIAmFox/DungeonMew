@@ -1,6 +1,5 @@
 package dungeonmew.hotkey;
 
-
 import ddapi.item.ItemFacts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,7 +8,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
 import org.lwjgl.glfw.GLFW;
 
 // switch to speed sword on key press and then switch back to previous hand slot

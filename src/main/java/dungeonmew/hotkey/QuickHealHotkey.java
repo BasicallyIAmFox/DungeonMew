@@ -8,12 +8,9 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
-// switch to speed sword on key press and then switch back to previous hand slot
+// switch to healing wand on key press and then switch back to previous hand slot
 @Environment(EnvType.CLIENT)
 public class QuickHealHotkey {
     private static KeyBinding keyBinding;
