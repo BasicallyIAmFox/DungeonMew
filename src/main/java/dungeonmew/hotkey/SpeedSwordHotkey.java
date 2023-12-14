@@ -33,26 +33,23 @@ public class SpeedSwordHotkey {
             if (keyBinding.wasPressed()) {
                 assert client.player != null;
                 PlayerInventory inv = client.player.getInventory();
-
-                if (inv.selectedSlot == savedSwordSlot){// switch back to previous slot before hotkey was pressed
-                    scrollToSlot(inv, savedHandSlot);
-                }
-                else {
-                    int largestSpeedBoost = 0;
-                    int invslot = inv.selectedSlot;
-                    for (int i = 0; i < 9; i++) {
-                        ItemStack item = inv.getStack(i);
-                        int healAmount = ItemFacts.getBaseHealAmount(item);
-                        if (healAmount > largestSpeedBoost){
-                            invslot = i;
-                            largestSpeedBoost = healAmount;
-                        }
-
+                int largestSpeedBoost = 0;
+                int invslot = inv.selectedSlot;
+                for (int i = 0; i < 9; i++) {
+                    ItemStack item = inv.getStack(i);
+                    int healAmount = ItemFacts.getBaseHealAmount(item);
+                    if (healAmount > largestSpeedBoost){
+                        invslot = i;
+                        largestSpeedBoost = healAmount;
                     }
-                    savedHandSlot = inv.selectedSlot;
-                    savedSwordSlot = invslot;
-                    scrollToSlot(inv, savedSwordSlot);
+
                 }
+                savedHandSlot = inv.selectedSlot;
+                savedSwordSlot = invslot;
+                scrollToSlot(inv, savedSwordSlot);
+                assert client.interactionManager != null;
+                client.interactionManager.interactItem(client.player, client.player.getActiveHand());
+                scrollToSlot(inv, savedHandSlot);
             }
         });
     }

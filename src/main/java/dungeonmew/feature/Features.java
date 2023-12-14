@@ -3,24 +3,13 @@ package dungeonmew.feature;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.mojang.logging.LogUtils;
 import ddapi.event.SentMessageEvents;
-import dungeonmew.feature.binding.BlessingFinderConfigurationBinding;
-import dungeonmew.feature.binding.BoolBinding;
-import dungeonmew.feature.binding.BrightnessConfigurationBinding;
-import dungeonmew.feature.binding.ColorBinding;
+import dungeonmew.feature.binding.*;
 import dungeonmew.util.FormattingUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import org.slf4j.Logger;
-
 import java.awt.*;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashSet;
 
 @Environment(EnvType.CLIENT)
 public final class Features {
@@ -131,6 +120,13 @@ public final class Features {
         public void registerAsCommand(LiteralCommandNode<FabricClientCommandSource> rootNode) {
             ShowCMDCommand.register(getName(), rootNode);
         }
+    };
+    public static final Feature<QuickTrashConfiguration> QUICK_TRASH = new Feature<>(
+            "quick_trash",
+            "quickTrash",
+            new QuickTrashConfigBinding(new QuickTrashConfiguration(QuickTrashConfiguration.getDefault()))
+    ) {
+
     };
 
     public static void init() {

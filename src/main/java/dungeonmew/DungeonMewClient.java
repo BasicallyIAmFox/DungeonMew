@@ -52,10 +52,9 @@ public class DungeonMewClient implements ClientModInitializer {
         for (var feature : Feature.getFeatures()) {
             feature.init();
         }
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> FeatureIO.load());
 
-        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
-            FeatureIO.save();
-        });
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> FeatureIO.save());
     }
 
     private static void registerTrackers() {
@@ -72,6 +71,7 @@ public class DungeonMewClient implements ClientModInitializer {
         QuickHealHotkey.init();
         TrashHotkey.init();
         AutoTrashHotkey.init();
+        AddTrashHotkey.init();
     }
 
     private static void registerShortcuts() {

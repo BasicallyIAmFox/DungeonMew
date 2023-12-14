@@ -24,6 +24,7 @@ public class TranslationGenerator extends FabricLanguageProvider {
         translationBuilder.add("key.dungeonmew.quick_heal", "Quick Heal");
         translationBuilder.add("key.dungeonmew.trash", "Trash Shortcut");
         translationBuilder.add("key.dungeonmew.quick_trash", "Quick Trash");
+        translationBuilder.add("key.dungeonmew.add_trash", "Toggle Item to Quick Trash");
 
     }
 

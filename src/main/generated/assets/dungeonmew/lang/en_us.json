@@ -27,5 +27,6 @@
   "key.dungeonmew.speed_sword": "Quick Speed",
   "key.dungeonmew.quick_heal": "Quick Heal",
   "key.dungeonmew.trash": "Trash Shortcut",
-  "key.dungeonmew.quick_trash" : "Quick Trash"
+  "key.dungeonmew.quick_trash" : "Quick Trash",
+  "key.dungeonmew.add_trash": "Toggle Item to Quick Trash"
 }

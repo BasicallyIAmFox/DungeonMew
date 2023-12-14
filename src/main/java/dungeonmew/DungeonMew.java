@@ -6,4 +6,5 @@ public class DungeonMew implements ModInitializer {
 	@Override
 	public void onInitialize() {
 	}
+
 }

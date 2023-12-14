@@ -39,13 +39,12 @@ public class QuickHealHotkey {
                         invslot = i;
                         largestMaxHeal = healAmount;
                     }
-
                 }
                 int savedHandSlot = inv.selectedSlot;
                 int savedSwordSlot = invslot;
                 scrollToSlot(inv, savedSwordSlot);
                 assert client.interactionManager != null;
-                client.interactionManager.interactItem(client.player, client.player.getActiveHand()); // test?
+                client.interactionManager.interactItem(client.player, client.player.getActiveHand());
                 scrollToSlot(inv, savedHandSlot);
             }
         });
