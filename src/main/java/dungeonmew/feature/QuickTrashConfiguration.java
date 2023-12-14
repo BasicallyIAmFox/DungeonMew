@@ -12,10 +12,16 @@ public record QuickTrashConfiguration(HashSet<Integer> idsToRemove) {
             // Weapons
             1000002, // bone blade
             1000009, // undead archer bow
+            1000019, // ice sickle
             1000031, // stringshot
             1000032, // slime orb
             1000034, // spade
             1000035, // stone dagger
+            1000037, // ice axe
+            1000038, // hamaxe
+            1000039, // bowmaster bow
+            1000040, // frost tome
+
 
             3000053, // skeletal warrier helm
             3000054, // slime boots
@@ -37,11 +43,17 @@ public record QuickTrashConfiguration(HashSet<Integer> idsToRemove) {
             5000004, // rock
             5000006, // string
             5000007, // nugget
+            5000008, // ingot
+            5000014, // snow
+            5000015, // ice
+            5000016, // chunks
 
+            5600000, // wolf pet
             5600001, // zombie pet
             5600005, // skele pet
-            5600010, // slime pet
+            5600008, // turtle pet
             5600006, // spider pet
+            5600010, // slime pet
 
     };
     public static HashSet<Integer> getDefault(){
