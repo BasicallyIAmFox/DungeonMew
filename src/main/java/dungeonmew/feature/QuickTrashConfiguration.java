@@ -49,6 +49,5 @@ public record QuickTrashConfiguration(HashSet<Integer> idsToRemove) {
         Arrays.stream(rawTrashDefaults).forEach(defaultSet::add);
         return defaultSet;
     }
-
     public HashSet<Integer> getIDs (){ return idsToRemove;}
 }

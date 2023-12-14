@@ -42,7 +42,6 @@ public class SpeedSwordHotkey {
                         invslot = i;
                         largestSpeedBoost = healAmount;
                     }
-
                 }
                 savedHandSlot = inv.selectedSlot;
                 savedSwordSlot = invslot;
@@ -54,7 +53,6 @@ public class SpeedSwordHotkey {
         });
     }
     private static void scrollToSlot(PlayerInventory inv, int slot){
-
         int diff = inv.selectedSlot - slot;
         System.out.println(diff);
         int dist = Math.abs(diff);

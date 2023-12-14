@@ -37,7 +37,6 @@ public class QuickTrashConfigBinding extends Binding<QuickTrashConfiguration>{
             String versionName = reader.nextName();
             if (versionName.equals("version")) {
                 String versionNumber = reader.nextString();
-
                 if (versionNumber.equals("1.0.0")) {
                     String deleteIDName = reader.nextName();
                     if (deleteIDName.equals("DeleteIDs")) {

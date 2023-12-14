@@ -125,9 +125,7 @@ public final class Features {
             "quick_trash",
             "quickTrash",
             new QuickTrashConfigBinding(new QuickTrashConfiguration(QuickTrashConfiguration.getDefault()))
-    ) {
-
-    };
+    ) {};
 
     public static void init() {
     }

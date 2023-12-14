@@ -52,7 +52,6 @@ public class QuickHealHotkey {
 
 
     private static void scrollToSlot(PlayerInventory inv, int slot){
-
         int diff = inv.selectedSlot - slot;
         System.out.println(diff);
         int dist = Math.abs(diff);
