@@ -17,12 +17,8 @@ import org.lwjgl.glfw.GLFW;
 @Environment(EnvType.CLIENT)
 public class QuickHealHotkey {
     private static KeyBinding keyBinding;
-    private static int savedSwordSlot;
-    private static int savedHandSlot;
 
     public static void init() {
-        savedSwordSlot = -2;
-        savedHandSlot = -1;
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.dungeonmew.quick_heal",
                 InputUtil.Type.KEYSYM,
@@ -34,32 +30,29 @@ public class QuickHealHotkey {
             if (keyBinding.wasPressed()) {
                 assert client.player != null;
                 PlayerInventory inv = client.player.getInventory();
-
-                if (inv.selectedSlot == savedSwordSlot){// switch back to previous slot before hotkey was pressed
-                    scrollToSlot(inv, savedHandSlot);
-                }
-                else {
-                    int largestMaxHeal = 0;
-                    int invslot = inv.selectedSlot;
-                    for (int i = 0; i < 9; i++) {
-                        ItemStack item = inv.getStack(i);
-                        int healAmount = ItemFacts.getBaseHealAmount(item);
-                        if (healAmount > largestMaxHeal){
-                            invslot = i;
-                            largestMaxHeal = healAmount;
-                        }
-
+                int largestMaxHeal = 0;
+                int invslot = inv.selectedSlot;
+                for (int i = 0; i < 9; i++) {
+                    ItemStack item = inv.getStack(i);
+                    int healAmount = ItemFacts.getBaseHealAmount(item);
+                    if (healAmount > largestMaxHeal){
+                        invslot = i;
+                        largestMaxHeal = healAmount;
                     }
-                    savedHandSlot = inv.selectedSlot;
-                    savedSwordSlot = invslot;
-                    scrollToSlot(inv, savedSwordSlot);
+
                 }
+                int savedHandSlot = inv.selectedSlot;
+                int savedSwordSlot = invslot;
+                scrollToSlot(inv, savedSwordSlot);
+                assert client.interactionManager != null;
+                client.interactionManager.interactItem(client.player, client.player.getActiveHand()); // test?
+                scrollToSlot(inv, savedHandSlot);
             }
         });
     }
 
 
-    public static void scrollToSlot(PlayerInventory inv, int slot){
+    private static void scrollToSlot(PlayerInventory inv, int slot){
 
         int diff = inv.selectedSlot - slot;
         System.out.println(diff);
